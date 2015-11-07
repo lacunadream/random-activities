@@ -10,6 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/lacunadream/random-activities.git"
   },
+  "dependencies": {
+    "express": "^4.13.3",
+    "hogan-express": "^0.5.2",
+    "mongoose": "^4.1.8",
+    "morgan": "^1.6.1",
+    "request": "^2.63.0",
+    "serve-favicon": "^2.3.0",
+    "uglify-js": "^2.4.24"
+  },
   "keywords": [
     "producthunt",
     "hackathon",
@@ -17,7 +26,7 @@
     "activities",
     "london"
   ],
-  "author": "lacunadream, jaydenp",
+  "author": "lacunadream, jaydenpang",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lacunadream/random-activities/issues"
