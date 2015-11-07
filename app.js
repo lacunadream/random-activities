@@ -5,6 +5,7 @@ var express = require('express');
 var logger = require('morgan');
 var path = require('path');
 var compress = require('compression');
+var bodyParser = require('body-parser');
 
 /**
  * Controllers (route handlers).
@@ -28,11 +29,15 @@ app.set("partials", {
 
 app.use(compress());
 app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /**
  * Primary app routes.
  */
 app.get('/', homeController.index);
+app.post('/', homeController.postPostCode);
+app.get('/results', homeController.randomActivity);
 
 
 /**

@@ -11,6 +11,7 @@
     "url": "git+https://github.com/lacunadream/random-activities.git"
   },
   "dependencies": {
+    "body-parser": "^1.14.0",
     "compression": "^1.5.2",
     "express": "^4.13.3",
     "hogan-express": "^0.5.2",
