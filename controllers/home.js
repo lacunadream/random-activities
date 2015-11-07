@@ -23,11 +23,16 @@ exports.randomActivity = function(req, res){
 	var z = random(x,y)
 	console.log(z)
 	res.render('home2');
-	//console.log('omg is' + omg);
+	var input1 = req.query.pc;
+	var input2 = req.query.bud;
+	console.log('omg is ' + input1 + ' ' + input2);
 }
 
 exports.postPostCode = function(req, res, next){
-	var omg = req.body.postcode;
-	console.log(omg);
-	res.redirect('/results?' + omg);
+	var input1 = req.body.postcode;
+	var input2 = req.body.budget;
+	var input3
+	var inptu4
+	//console.log(input);
+	res.redirect('/results?pc=' + input1 + '&bud=' + input2);
 }
