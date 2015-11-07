@@ -1,0 +1,26 @@
+{
+  "name": "random-activities",
+  "version": "1.0.0",
+  "description": "A web application that generates random suggested activities that you can pursue",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lacunadream/random-activities.git"
+  },
+  "keywords": [
+    "producthunt",
+    "hackathon",
+    "random",
+    "activities",
+    "london"
+  ],
+  "author": "lacunadream, jaydenp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lacunadream/random-activities/issues"
+  },
+  "homepage": "https://github.com/lacunadream/random-activities#readme"
+}
