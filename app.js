@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * Primary app routes.
  */
 app.get('/', homeController.index);
-app.post('/', homeController.postPostCode);
+app.post('/', homeController.postDetails);
 app.get('/results', homeController.randomActivity);
 
 
