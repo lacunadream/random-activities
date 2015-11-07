@@ -1,3 +1,6 @@
+var request = require('request');
+var Q = require('q');
+
 /**
  * GET /
  * Home page.
@@ -28,30 +31,46 @@ exports.postDetails = function(req, res, next){
  * Massive wtf
  */
 	// Ahh scoping
+
 	function random (low, high) {
 		return Math.random() * (high - low) + low;
+	}
+
+	function postcodeAPI (apiURL, apiMethod) {
+		var deferred = Q.defer();
+		request({
+			url: 'http://api.postcodes.io/postcodes/' + apiURL, 
+			method: apiMethod
+	}, function(error, response, body) {
+		if (error) deferred.reject(error)
+    	else deferred.resolve(body)
+	});
+    	return deferred.promise
 	}
 
 exports.randomActivity = function(req, res){
 	// Process Queries
 	var input1 = req.query.pc;
 	var input2 = req.query.bud;
-	// console.log('omg is ' + input1 + ' ' + input2);
 
+	// Fucking lousy postcode
 	// Random Generator
 
+	// Postcode API Call
+	var zzz = postcodeAPI(input1, 'GET').then(x = 50, x = 100);
 
 	// Grab Time
 	var date = new Date();
 	var current_hour = date.getHours();
 	console.log(current_hour)
 
-	var x = 50
-	var y = 100
-	var z = random(x,y)
-	console.log(z)
-	if (z > 75) {
-		res.render('home2');
+	// var x = 50
+	// var y = 100
+	// var z = random(x,y)
+	// console.log(z)
+	console.log(x)
+	if (x > 75) {
+		res.render('home_real');
 	} else {
 		res.render('homepage');
 	}
