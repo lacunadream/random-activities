@@ -42,38 +42,59 @@ exports.postDetails = function(req, res, next){
 			url: 'http://api.postcodes.io/postcodes/' + apiURL, 
 			method: apiMethod
 	}, function(error, response, body) {
-		if (error) deferred.reject(error)
-    	else deferred.resolve(body)
+		if (error) {
+			deferred.reject(error);
+		} else {
+			deferred.resolve(body);
+		}
 	});
-    	return deferred.promise
+    	return deferred.promise;
 	}
 
 exports.randomActivity = function(req, res){
 	// Process Queries
 	var input1 = req.query.pc;
 	var input2 = req.query.bud;
-
+	var x
 	// Fucking lousy postcode
-	// Random Generator
-
 	// Postcode API Call
-	var zzz = postcodeAPI(input1, 'GET').then(x = 50, x = 0);
+	postcodeAPI(input1, 'GET')
+		.then(postCodeCheck(k))
+		.then(console.log('OMG'))
 
+	function postCodeCheck(Res) {
+		var deferred = Q.defer();
+		res = JSON.parse(Res);
+		if (res.status == "404") {
+			req.flash('error', input1);
+			return res.redirect('/');
+		} else if (res.status == "200") {
+			deferred.resolve();
+		}
+		return deferred.promise;
+	}
 	// Grab Time
 	var date = new Date();
 	var current_hour = date.getHours();
-	//console.log(current_hour)
+	if (current_hour < 7 || current_hour > 20) {
+		y = 0.5;
+	} else {
+		y = 1;
+	}
+	var xy = x * y;
 
 	// var x = 50
 	// var y = 100
 	// var z = random(x,y)
 	// console.log(z)
-	console.log(x)
-	if (x == 0) {
-		req.flash('error', input1);
-		return res.redirect('/');
-	} else {
-		res.render('home_real');
-	}
+	console.log('x= '+ x)
+	console.log('y= ' + y)
+	console.log(xy)
+	// if (xy == 0) {
+	// 	req.flash('error', input1);
+	// 	return res.redirect('/');
+	// } else {
+	// 	res.render('home_real');
+	// }
 }
 
