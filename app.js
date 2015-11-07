@@ -3,6 +3,8 @@
  */
 var express = require('express');
 var logger = require('morgan');
+var path = require('path');
+var compress = require('compression');
 
 /**
  * Controllers (route handlers).
@@ -23,3 +25,20 @@ app.set("partials", {
   header: "_partials/header",
   footer: "_partials/footer"
 });
+
+app.use(compress());
+app.use(logger('dev'));
+
+/**
+ * Primary app routes.
+ */
+app.get('/', homeController.index);
+
+
+/**
+ * Start Express server.
+ */
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
+module.exports = app;
