@@ -22,12 +22,12 @@ exports.randomActivity = function(req, res){
 	}
 	var z = random(x,y)
 	console.log(z)
+	res.render('home2');
 	//console.log('omg is' + omg);
 }
 
 exports.postPostCode = function(req, res, next){
 	var omg = req.body.postcode;
-	console.log(omg)
-	return omg;
-	res.redirect('/results')
+	console.log(omg);
+	res.redirect('/results?' + omg);
 }

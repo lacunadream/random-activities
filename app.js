@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 /**
  * Controllers (route handlers).
  */
-var homeController = require('./controllers/home')
+var homeController = require('./controllers/home');
 
 /**
  * Create Express server.
