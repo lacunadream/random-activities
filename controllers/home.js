@@ -58,21 +58,38 @@ exports.randomActivity = function(req, res){
 	var x
 	// Fucking lousy postcode
 	// Postcode API Call
-	postcodeAPI(input1, 'GET')
-		.then(postCodeCheck(k))
-		.then(console.log('OMG'))
-
-	function postCodeCheck(Res) {
+	postcodeAPI(input1, 'GET').then(
+		function postCodeCheck(Res) {
 		var deferred = Q.defer();
 		res = JSON.parse(Res);
-		if (res.status == "404") {
-			req.flash('error', input1);
-			return res.redirect('/');
-		} else if (res.status == "200") {
-			deferred.resolve();
+		console.log(typeof res.status)
+		console.log(res.status)
+		if (res.status == 404) {
+			return x = 0;
+		} else if (res.status == 200) {
+			return x = 100;
 		}
+		deferred.resolve(x);
 		return deferred.promise;
+	}).then(
+	function wtf(ok1) {
+		ok = ok1 + y
+		console.log(ok)
+
 	}
+	)
+
+	// function postCodeCheck(Res) {
+	// 	var deferred = Q.defer();
+	// 	res = JSON.parse(Res);
+	// 	if (res.status == "404") {
+	// 		req.flash('error', input1);
+	// 		return res.redirect('/');
+	// 	} else if (res.status == "200") {
+	// 		deferred.resolve();
+	// 	}
+	// 	return deferred.promise;
+	// }
 	// Grab Time
 	var date = new Date();
 	var current_hour = date.getHours();
