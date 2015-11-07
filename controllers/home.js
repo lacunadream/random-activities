@@ -57,22 +57,23 @@ exports.randomActivity = function(req, res){
 	// Random Generator
 
 	// Postcode API Call
-	var zzz = postcodeAPI(input1, 'GET').then(x = 50, x = 100);
+	var zzz = postcodeAPI(input1, 'GET').then(x = 50, x = 0);
 
 	// Grab Time
 	var date = new Date();
 	var current_hour = date.getHours();
-	console.log(current_hour)
+	//console.log(current_hour)
 
 	// var x = 50
 	// var y = 100
 	// var z = random(x,y)
 	// console.log(z)
 	console.log(x)
-	if (x > 75) {
-		res.render('home_real');
+	if (x == 0) {
+		req.flash('error', input1);
+		return res.redirect('/');
 	} else {
-		res.render('homepage');
+		res.render('home_real');
 	}
 }
 
