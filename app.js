@@ -6,6 +6,9 @@ var logger = require('morgan');
 var path = require('path');
 var compress = require('compression');
 var bodyParser = require('body-parser');
+var flash = require('express-flash');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 /**
  * Controllers (route handlers).
@@ -31,6 +34,14 @@ app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());
+app.use(cookieParser());
+app.use(session({ 
+	secret: 'tobo!', 
+	cookie: { maxAge: 60 * 60 * 1000 }, 
+	resave: true,
+  	saveUninitialized: true
+}));
 
 /**
  * Primary app routes.
