@@ -373,3 +373,12 @@ header .end-text {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700
 }
+
+.white-middle {
+    background-color: #FFF;
+}
+
+img { 
+    display: block;
+    margin: 20px auto 20px;
+}
