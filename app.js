@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var flash = require('express-flash');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var path = require('path');
 
 /**
  * Controllers (route handlers).
@@ -22,6 +23,7 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 app.set('layout', '_layouts/default');
 app.set('view engine', 'html');
 app.engine('html', require('hogan-express'));
