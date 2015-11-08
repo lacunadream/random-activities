@@ -65,18 +65,35 @@ exports.randomActivity = function(req, res){
 		console.log(typeof res.status)
 		console.log(res.status)
 		if (res.status == 404) {
-			return x = 0;
+			deferred.reject();
 		} else if (res.status == 200) {
-			return x = 100;
+			deferred.resolve();
 		}
-		deferred.resolve(x);
 		return deferred.promise;
 	}).then(
-	function wtf(ok1) {
-		ok = ok1 + y
-		console.log(ok)
-
-	}
+	function wtf() {
+		var deferred = Q.defer();
+		x = random(0,100)
+		console.log(x)
+		xy = x * y
+		console.log(xy)
+		if (xy < 70) {
+			deferred.reject();
+		} else {
+			deferred.resolve(xy)
+		}
+		return deferred.promise
+	}, console.log('asd')
+	).then(
+	function wtf2(fuck) {
+		var deferred = Q.defer();
+		if (fuck < 35){
+			deferred.reject();
+		} else {
+			deferred.resolve();
+		}
+		return deferred.promise
+	}, res.render('home_real')
 	)
 
 	// function postCodeCheck(Res) {
@@ -94,19 +111,23 @@ exports.randomActivity = function(req, res){
 	var date = new Date();
 	var current_hour = date.getHours();
 	if (current_hour < 7 || current_hour > 20) {
-		y = 0.5;
+		y = 0.8;
 	} else {
 		y = 1;
 	}
 	var xy = x * y;
 
+	// function rawr(req,res) {
+	// 	req.flash('error', input1);
+	// 	return res.redirect('/');
+	// }
 	// var x = 50
 	// var y = 100
 	// var z = random(x,y)
 	// console.log(z)
-	console.log('x= '+ x)
-	console.log('y= ' + y)
-	console.log(xy)
+	// console.log('x= '+ x)
+	// console.log('y= ' + y)
+	// console.log(xy)
 	// if (xy == 0) {
 	// 	req.flash('error', input1);
 	// 	return res.redirect('/');
