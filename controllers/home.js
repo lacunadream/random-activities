@@ -87,7 +87,7 @@ exports.randomActivity = function(req, res){
 		req.flash('error', input1);
 		return res.redirect('/');
 		//return deferred.promise
-})
+}).done()
 
 	// A REMINDER TO MYSELF THAT I MESSED UP 
 	// .then(
