@@ -53,8 +53,106 @@ exports.randomActivity = function(req, res){
 	// Process Queries
 	var input1 = req.query.pc;
 	var input2 = req.query.bud;
+	var x
 
-	res.render('results_1');
+	// Fucking lousy postcode
+	// Postcode API Call
+	postcodeAPI(input1, 'GET').then(
+		function postCodeCheck(Res) {
+		var deferred = Q.defer();
+		a = JSON.parse(Res);
+		console.log(typeof a.status)
+		console.log(a.status)
+		if (a.status == 404) {
+			deferred.reject();
+		} else if (a.status == 200) {
+			deferred.resolve();
+		}
+		return deferred.promise;
+	}).then(
+		function wtf() {
+		var deferred = Q.defer();
+		x = random(0,100)
+		console.log('x' + x)
+		//xy = x * y
+		//console.log(xy)
+		if (x < 50) {
+			res.render('results_1')
+		} else {
+			res.render('results_2')
+		}
+	}, function() {
+		//var deferred = Q.defer()
+		console.log('a')
+		req.flash('error', input1);
+		return res.redirect('/');
+		//return deferred.promise
+})
+
+	// A REMINDER TO MYSELF THAT I MESSED UP 
+	// .then(
+	// 	function wtf2(fuck) {
+	// 		console.log('b')
+	// 		var deferred = Q.defer();
+	// 		if (fuck < 35){
+	// 			deferred.reject();
+	// 		} else {
+	// 			deferred.resolve();
+	// 		}
+	// 		return deferred.promise
+	// 	}, function() {
+	// 		var deferred = Q.defer()
+	// 		console.log('1')
+	// 		res.render('results_1')
+	// 		return deferred.promise;
+	// 	}).then(
+	// 	function () {
+	// 		console.log('2')
+	// 		res.render('results_1');
+	// 	}, function() {
+	// 		console.log('3')
+	// 		res.render('results_1');
+	// 	});
+
+	// function () {
+	// 	var deferred = Q.defer()
+	// 	deferred.reject()
+	// 	console.log('pass')
+	// 	return deferred.promise
+	// }, function () {
+	// 	var deferred = Q.defer()
+	// 	//deferred.resolve()
+	// 	console.log('fail')
+	// 	return deferred.promise
+	// }).then(
+	// function () {
+	// 	console.log('pass2')
+	// }, function () {
+	// 	console.log('fail2')
+	// })
+
+	// var deferred = Q.defer();
+	// x = random(0,100)
+	// if (x<50) {
+	// 	deferred.reject()
+	// } else {
+	// 	deferred.resolve()
+	// }
+	// return deferred.promise
+
+
+
+
+
+	// Grab Time
+	var date = new Date();
+	var current_hour = date.getHours();
+	if (current_hour < 7 || current_hour > 20) {
+		y = 0.8;
+	} else {
+		y = 1;
+	}
+	var xy = x * y;
+
 }
-
 
